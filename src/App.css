@@ -13,6 +13,24 @@
   }
 }
 
+.liMain {
+  background-color: purple;
+  border: 4px solid black;
+  max-width: 150px;
+}
+.liMain1 {
+  background-color: blue;
+  border: 4px solid black;
+  max-width: 150px;
+}
+.liMain2 {
+  background-color: rgb(190, 43, 136);
+  border: 4px solid black;
+  max-width: 150px;
+  color: black;
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
