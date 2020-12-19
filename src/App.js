@@ -6,7 +6,7 @@ import ContactCard from "./Components/ContactCard";
 // import Header from "./Components/Header";
 import ToDo from "./Components/ToDoItems";
 import Joke from "./Components/Joke";
-
+import Products from "./Components/Products";
 
 function App(props) {
   const jokesArray = [
@@ -24,6 +24,24 @@ function App(props) {
       punchLine: "Money talks: mine always says is goodbye.",
     },
 ]
+const prodArray = [
+  {
+      id:0,
+      name: "Shout",
+      price: parseFloat(3.75),
+  },
+  {
+      id:0,
+      name: "Comet",
+      price: parseFloat(2.95),
+  },
+  {
+      id:0,
+      name: "TP",
+      price: parseFloat(13.75),
+  },
+]
+const ProdComponent = prodArray.map(items => <Products key={items.id} prodArray={items}/>)
 
   const jokeComponent = jokesArray.map(jokes => <Joke key={jokes.id} question={jokes.question} punchLine={jokes.punchLine}/>)
 
@@ -49,8 +67,10 @@ function App(props) {
         }}
       />
       <>
+  
       {jokeComponent}
       </>
+      {ProdComponent}
       <ToDo />
       <ToDo />
       <ToDo />
