@@ -1,11 +1,14 @@
 import React from "react";
-import "../App.css";
 
-export default function ToDo() {
+
+export default function ToDoItems(props) {
+
+
   return (
+
     <div>
-      <input type="checkbox" />
-     <p className="liMain2">placeHolder Text here</p>
+      <input type="checkbox" checked={props.todoData.completed}/> 
+  <p className="liMain2">{props.todoData.objective}</p>
     </div>
   );
 }
