@@ -1,23 +1,35 @@
 import React from "react";
 import "./App.css";
 import ContactCard from "./Components/ContactCard";
-// import Footer from "./Components/Footer";
-// import Main from "./Components/MyInfo";
-// import Header from "./Components/Header";
+// // import Footer from "./Components/Footer";
+// // import Main from "./Components/MyInfo";
+// // import Header from "./Components/Header";
 import ToDoItems from "./Components/ToDoItems";
 import Joke from "./Components/Joke";
 import Products from "./Components/Products";
 import todoData from "./utils/TodoData";
 
-
-
-
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      todos: todoData,
+      todos: todoData
     }
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange(id){
+    this.setState(prevState => {
+      const updatedTodos = prevState.todos.map(listItems => {
+        if (listItems.id === id){
+          listItems.completed = !listItems.completed
+        }
+        return listItems
+      })
+      return {
+         todos: updatedTodos
+      }
+    })
+
   }
 
 render(){
@@ -53,11 +65,11 @@ const prodArray = [
       price: parseFloat(13.75),
   },
 ];
-  const toDoComponent = this.state.todos.map(todos => <ToDoItems key={todos.id} todoData={todos}/>)
+  const toDoComponent = this.state.todos.map(items => <ToDoItems key={items.id} items={items} handleChange={this.handleChange}/>)
   const ProdComponent = prodArray.map(items => <Products key={items.id} prodArray={items}/>)
-  
+
     const jokeComponent = jokesArray.map(jokes => <Joke key={jokes.id} question={jokes.question} punchLine={jokes.punchLine}/>)
-  
+
     return (
       <>
         <ContactCard
@@ -80,21 +92,74 @@ const prodArray = [
           }}
         />
        <>
-    
+
         {jokeComponent}
 
         {ProdComponent}
-        
+
         {toDoComponent}
   </>
       </>
     )
   }
 
-
-
-
 }
 
-
 export default App;
+
+// class App extends React.Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       count: 0,
+//     };
+//     this.handleIncrement = this.handleIncrement.bind(this);
+//     this.handleDecrement = this.handleDecrement.bind(this);
+//     this.handleDouble = this.handleDouble.bind(this);
+//     this.handleReset = this.handleReset.bind(this);
+//   }
+//   handleIncrement() {
+//     this.setState((prevState) => {
+//       return {
+//         count: prevState.count + 1,
+//       };
+//     });
+//   }
+
+//   handleDecrement() {
+//     this.setState((prevState) => {
+//       return {
+//         count: prevState.count - 1,
+//       };
+//     });
+//   }
+//   handleDouble() {
+//     this.setState((prevState) => {
+//       return {
+//         count: prevState.count * 2,
+//       };
+//     });
+//   }
+
+//   handleReset() {
+//     this.setState((initial) => {
+//       return {
+//         count: initial.count * 0,
+//       };
+//     });
+//   }
+
+//   render() {
+//     return (
+//       <div>
+//         <h1>{this.state.count}</h1>
+//         <button onClick={this.handleIncrement}>Increment</button>
+//         <button onClick={this.handleDecrement}>Decrement</button>
+//         <button onClick={this.handleDouble}>Double</button>
+//         <button onClick={this.handleReset}>Reset</button>
+//       </div>
+//     );
+//   }
+// }
+
+// export default App;
