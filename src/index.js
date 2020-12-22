@@ -1,37 +1,41 @@
 // import React, { Component } from "react";
-import React from "react"
+import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+// import App from "./App";
 import "./index.css";
 
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoggedIn: false,
+    };
+    this.handleOnClick = this.handleOnClick.bind(this);
+  }
 
-// class App extends Component {
-//     constructor(){
-//           super()
-//           this.state = {
-//               isLoggedIn: false,
-//           }
-//     }
-  
-//     render(){
-//         let statusDisplay;
-//         if(!this.state.isLoggedIn){
-//             statusDisplay = "In"
-//         } else {
-//             statusDisplay = "out"
-//         }
-//         return (
-//             <div>
-//                 <h1>
-//                     You are logged {statusDisplay}
-//                 </h1>
-//             </div>
+  handleOnClick() {
+    this.setState((prevState) => {
+      return {
+        isLoggedIn: !prevState.isLoggedIn,
+      };
+    });
+  }
 
-//         )
-//     }
-// }
+  render() {
+    let statusDisplay = this.state.isLoggedIn ? "In" : "Out";
 
+    let buttonStatus = this.state.isLoggedIn ? "Log Out" : "Log In";
 
+    return (
+      <>
+        <div>
+          <p>You are now logged {statusDisplay} </p>
+          <button onClick={() => this.handleOnClick()}>{buttonStatus}</button>
+        </div>
+      </>
+    );
+  }
+}
 
 // class Header extends Component {
 // render(){
@@ -42,16 +46,11 @@ import "./index.css";
 //     );
 //   }
 
-
 // }
-
-
 
 // class Greeting extends Component {
 //   render() {
 
-
-  
 //     const date = new Date();
 //     const hours = date.getHours();
 //     let timeOfDay;
@@ -67,4 +66,4 @@ import "./index.css";
 //   }
 // }
 
-ReactDOM.render(<App/>, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
